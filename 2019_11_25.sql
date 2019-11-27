@@ -148,7 +148,7 @@ FROM dual;
 --LAST_DAY(date) : date가 속한 월의 마지막 날짜
   
 --MONTHS_DETWEEN(date1, date2)
-SELECT MONTHS_BETWEEN(TO_DATE('2019-11-25, 'YYYY-MM-DD'),
+SELECT MONTHS_BETWEEN TO_DATE('2019-11-25', 'YYYY-MM-DD'),
         TO_DATE('2019-03-31, 'YYYY-MM-DD')) m_bet,
         TO_DATE('2019-03-31', 'YYYY-MM-DD) d_m --두 날짜 사이의 일자수
 FROM dual;
