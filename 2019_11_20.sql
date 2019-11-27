@@ -32,7 +32,7 @@ FROM users;
 -- 숫자에 대한 연산 ( +, -, /, *)
 -- 문자에 대한 연산 ( +가 존재하지 않음, -> ||)
 SELECT (10-2)*2,'DB SQL 수업', 
-        /*userid,+ '_modified', 문자열 연산은 더하기 연산 x */
+        /*userid,+ '_modified', 문자열 연산은 더하기 연산 x (+) */
         usernm || '_modified', reg_dt
 FROM users;
 
