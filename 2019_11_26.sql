@@ -182,3 +182,63 @@ FROM emp;
 
 
 
+--assignment
+
+SELECT empno, ename,  
+    DECODE(deptno,  '10', 'ACCOUNTING',
+                    '20', 'RESEARCH',
+                    '30', 'SALES',
+                    '40', 'OPERATIONS',
+                    'DDIT'  ) DNAME                   
+FROM emp;
+
+SELECT empno, ename,
+    CASE
+    WHEN deptno = 10 THEN 'ACCOUNTING'
+    WHEN deptno = 20 THEN 'RESEARCH'
+    WHEN deptno = 30 THEN 'SALES'
+    WHEN deptno = 40 THEN 'OPERATIONS'
+                  ELSE 'DDIT'
+    END DNAME
+    FROM emp;
+
+--건강검진 대상자 조회
+--1. 올해 년도가 홀/짝인지 (0:짝수년, 1:홀수년)
+SELECT empno, ename, hiredate,
+    CASE 
+        WHEN MOD (TO_NUMBER(TO_CHAR(hiredate, 'yy')),2) =1 
+        THEN '건강검진 대상자'
+        ELSE '건강검진 비대상자'
+    END CONTECT_TO_DOCTOR
+
+FROM emp;
+
+
+--내년도(2020년) 건강검진 대상자를 조회하는 쿼리
+SELECT empno, ename, hiredate,
+    CASE
+        WHEN MOD(TO_CHAR(hiredate, 'YYYY'), 2) =
+             MOD(TO_CHAR(TO_DATE('2020', 'YYYY'),'YYYY'), 2)
+             MOD(TO_CHAR(SYSDATE, 'YYYY') +1, 2) --젤 이상적인 방법
+        THEN '건강검진 대상자'
+        ELSE '건강검진 비대상자'
+    END contact_to_doctor
+FROM emp;
+        
+        
+SELECT userid, usernm, alias, reg_dt,
+    CASE
+        WHEN reg_dt IS NULL THEN '건강검진 비대상자'
+        ELSE '건강검진 대상자'
+    END CONTACTTODOCTOR
+FROM users;
+
+SELECT *
+(SELECT userid, usernm, alias, reg_dt
+         TO_CHAR(reg_dt, 'YYYY'),yyyy,
+         TO_CHAR(SYSDATE, 'YYYY') this_yyyy
+    FROM users)
+       
+
+
+
