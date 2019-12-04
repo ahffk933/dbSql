@@ -32,6 +32,7 @@ FROM
         FROM fastfood
         WHERE gb = '롯데리아'
         GROUP BY sido, sigungu) b
+       
         WHERE a.sido = b.sido
         AND a.sigungu = b.sigungu
         ORDER BY 도시발전지수 DESC);
@@ -40,11 +41,25 @@ FROM
 
 
 --내가 하다만거 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-SELECT ROWNUM rank, SUM(a)gb, sido, sigungu, ROWNUM 도시발전지수 
+(SELECT ROWNUM rn, sido, sigungu,도시발전지수
+FROM
+(SELECT a.sido, a.sigungu, ROUND(a.cnt/b.cnt,1) as 도시발전지수
+FROM
+(SELECT sido, sigungu, COUNT(*)cnt 
 FROM fastfood
-WHERE gb IN('버거킹', 'KFC', '맥도날드')  a;
+WHERE gb IN('버거킹', 'KFC', '맥도날드')
+GROUP BY sido, sigungu) a,
+
+(SELECT sido, sigungu, COUNT(*)cnt
+FROM fastfood
+WHERE gb IN ('롯데리아')
+GROUP BY sido, sigungu) b
+
+WHERE a.sido = b.sido
+AND a.sigungu = b.sigungu
+ORDER BY 도시발전지수 DESC)) as han
  
-ORDER BY rank
+
 
 
 
@@ -68,3 +83,31 @@ AND gb ='롯데리아'; -- 롯데리아41, 맥도날드18, 버거킹11, 케엪씨5
 
 SELECT *
 FROM tax;
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
