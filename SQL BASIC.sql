@@ -1,0 +1,13 @@
+DML
+    SELECT / INSERT / UPDATE / DELETE / INSERT ALL / MERGE*
+    
+TCL
+    COMMIT / ROLLBACK / [SAVEPOINT]
+    
+DDL
+    CREATE °´Ã¼
+    ALTER
+    DROP
+    
+DCL
+    GRANT / REVOKE
